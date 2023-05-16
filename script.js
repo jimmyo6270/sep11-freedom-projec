@@ -11,7 +11,7 @@ const firebaseConfig = {
 
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
-const database = firebase.getDatabase();
+const database = firebase.database();
 
 // Get references to HTML elements
 const addWorkoutForm = document.getElementById('add-workout-form');
