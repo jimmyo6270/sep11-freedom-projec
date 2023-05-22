@@ -30,12 +30,7 @@ addWorkoutForm.addEventListener('submit', function(event) {
     sets: sets,
     reps: reps
   });
-  .then(() => {
-    console.log('Data successfully pushed to Firebase');
-  })
-  .catch(error => {
-    console.log('Error pushing data to Firebase:', error);
-  });
+  
   addWorkoutForm.reset();
 });
 
