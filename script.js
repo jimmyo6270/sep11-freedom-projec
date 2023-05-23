@@ -1,5 +1,5 @@
-import { initializeApp } from 'firebase/app';
-import { getDatabase } from 'firebase/database';
+// import { initializeApp } from 'firebase/app';
+// import { getDatabase } from 'firebase/database';
 
 // The web app's Firebase configuration
 const firebaseConfig = {
@@ -30,7 +30,7 @@ addWorkoutForm.addEventListener('submit', function(event) {
     sets: sets,
     reps: reps
   });
-  
+
   addWorkoutForm.reset();
 });
 
