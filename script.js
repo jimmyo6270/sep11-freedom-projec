@@ -1,5 +1,5 @@
-import { initializeApp } from 'firebase/app';
-import { getDatabase, push, ref, onValue, remove } from 'firebase/database';
+// import { initializeApp } from 'firebase/app';
+// import { getDatabase, push, ref, onValue, remove } from 'firebase/database';
 
 
 // The web app's Firebase configuration
