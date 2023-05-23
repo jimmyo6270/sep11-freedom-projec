@@ -1,5 +1,6 @@
-// import { initializeApp } from 'firebase/app';
-// import { getDatabase, push, ref, onValue, remove } from 'firebase/database';
+import { initializeApp } from 'https://cdn.skypack.dev/firebase/app';
+import { getDatabase, push, ref, onValue, remove } from 'https://cdn.skypack.dev/firebase/database';
+
 
 
 // The web app's Firebase configuration
