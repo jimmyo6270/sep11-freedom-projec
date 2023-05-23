@@ -1,5 +1,6 @@
-// import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js'
-// import { getDatabase } from 'firebase/database';
+import firebase from "firebase";
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js'
+import { getDatabase } from 'firebase/database';
 
 // The web app's Firebase configuration
 const firebaseConfig = {
