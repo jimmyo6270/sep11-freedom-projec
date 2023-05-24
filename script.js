@@ -1,6 +1,7 @@
-
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js';
-import { getDatabase, push, ref, onValue, remove } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-database.js';
+import { getAuth } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js';
+import { signInWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js';
+
 
 // The web app's Firebase configuration
 const firebaseConfig = {
@@ -14,43 +15,26 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const database = getDatabase(app);
+const auth = getAuth(app);
 
-// Get references to HTML elements
-const addWorkoutForm = document.getElementById('add-workout-form');
-const workoutList = document.getElementById('workouts');
+const loginForm = document.getElementById('login-form');
+const emailInput = document.getElementById('email');
+const passwordInput = document.getElementById('password');
+const errorMessage = document.getElementById('error-message');
 
-// Add workout to Firebase database
-addWorkoutForm.addEventListener('submit', function(event) {
-  event.preventDefault();
-  const exerciseName = addWorkoutForm.elements['exercise-name'].value;
-  const sets = addWorkoutForm.elements['sets'].value;
-  const reps = addWorkoutForm.elements['reps'].value;
-  push(ref(database, 'workouts'), {
-    exerciseName: exerciseName,
-    sets: sets,
-    reps: reps
-  });
+loginForm.addEventListener('submit', (e) => {
+  e.preventDefault();
 
-  addWorkoutForm.reset();
-});
+  const email = emailInput.value;
+  const password = passwordInput.value;
 
-// Get workouts from Firebase database
-onValue(ref(database, 'workouts'), function(snapshot) {
-  workoutList.innerHTML = '';
-  snapshot.forEach(function(childSnapshot) {
-    const childData = childSnapshot.val();
-    const exerciseName = childData.exerciseName;
-    const sets = childData.sets;
-    const reps = childData.reps;
-    const workoutListItem = document.createElement('li');
-    workoutListItem.innerHTML = '<span>' + exerciseName + '</span> - Sets: ' + sets + ', Reps: ' + reps;
-    const deleteButton = document.createElement('button');
-    deleteButton.innerHTML = 'Delete';
-    deleteButton.addEventListener('click', function() {
-      remove(ref(database, 'workouts/' + childSnapshot.key));
+  signInWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      window.location.href = "index2.html";
+      console.log('User logged in:', userCredential.user);
+    })
+    .catch((error) => {
+      // Handle login errors
+      errorMessage.textContent = "wrong login";
     });
-    workoutListItem.appendChild(deleteButton);
-    workoutList.appendChild(workoutListItem);
-  });
 });
